@@ -1,4 +1,4 @@
-#include "linearrmq.h"
+#include "lbt.h"
 #include <iostream>
 #include <functional>
 
@@ -34,8 +34,8 @@ int main(void) {
     for (int i = 1; i <= N; i++) std::cin >> a[i];
 
     // two-pointers method to precompute the functions f and g
-    linearrmq<int, std::greater<int>> rqmax(N, a, -0x3f3f3f3f);
-    linearrmq<int, std::less<int>> rqmin(N, a, 0x3f3f3f3f);
+    lbt<int, std::greater<int>> rqmax(N, a, -0x3f3f3f3f);
+    lbt<int, std::less<int>> rqmin(N, a, 0x3f3f3f3f);
 
     int l = 1, r = 1;
     while (r <= N) {
@@ -54,7 +54,7 @@ int main(void) {
 
     // range maximum queries on f
     // subarray(0x3f3f3f3f, 0x3f3f3f3f) is a default value which is not greater than any other subarray
-    linearrmq<subarray, compareSubarrays> rmq(N, f, subarray(0x3f3f3f3f, 0x3f3f3f3f));
+    lbt<subarray, compareSubarrays> rmq(N, f, subarray(0x3f3f3f3f, 0x3f3f3f3f));
 
     std::cin >> Q;
     while (Q--) {

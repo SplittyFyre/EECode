@@ -1,5 +1,5 @@
 #include "monoqueue.h"
-#include "linearrmq.h"
+#include "lbt.h"
 #include <iostream>
 #include <functional>
 
@@ -61,7 +61,7 @@ int main(void) {
 
     // range maximum queries on f
     // subarray(0x3f3f3f3f, 0x3f3f3f3f) is a default value which is not greater than any other subarray
-    linearrmq<subarray, compareSubarrays> rmq(N, f, subarray(0x3f3f3f3f, 0x3f3f3f3f));
+    lbt<subarray, compareSubarrays> rmq(N, f, subarray(0x3f3f3f3f, 0x3f3f3f3f));
 
     std::cin >> Q;
     while (Q--) {

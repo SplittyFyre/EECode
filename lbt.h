@@ -5,9 +5,9 @@
 
 template <typename T, typename Comp>
 // Comp is a functor, comp(a, b) should return true if a is better than b
-class linearrmq {
+class lbt {
 public:
-    linearrmq(int N, const std::vector<T> &v, const T &defval) : N(N), b(int(floor(log2(N)))), data(v), masks(N + 1) {
+    lbt(int N, const std::vector<T> &v, const T &defval) : N(N), b(int(floor(log2(N)))), data(v), masks(N + 1) {
         // compute masks for all indices
         masks[N] = int16_t(1) << 15;
         for (int i = N - 1; i >= 1; i--) {
@@ -28,7 +28,7 @@ public:
         }
         broad = new sparsetable<T, Comp>(ceildiv(N, b), blocks);
     }
-    ~linearrmq() { delete broad; }
+    ~lbt() { delete broad; }
 
     T query(int l, int r) {
         if (r - l + 1 < b) return preciseQuery(l, r);

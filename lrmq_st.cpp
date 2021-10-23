@@ -1,5 +1,5 @@
 #include "sparsetable.h"
-#include "linearrmq.h"
+#include "lbt.h"
 #include <iostream>
 #include <functional>
 
@@ -35,8 +35,8 @@ int main(void) {
     for (int i = 1; i <= N; i++) std::cin >> a[i];
 
     // two-pointers method to precompute the functions f and g
-    linearrmq<int, std::greater<int>> rqmax(N, a, -0x3f3f3f3f);
-    linearrmq<int, std::less<int>> rqmin(N, a, 0x3f3f3f3f);
+    lbt<int, std::greater<int>> rqmax(N, a, -0x3f3f3f3f);
+    lbt<int, std::less<int>> rqmin(N, a, 0x3f3f3f3f);
 
     int l = 1, r = 1;
     while (r <= N) {
